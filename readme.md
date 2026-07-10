@@ -1,4 +1,6 @@
-# 🦇 Real-time Spatial Pulse Engine
+# Real-time Spatial Pulse Engine
+
+<img width="1797" height="1037" alt="Screenshot from 2026-07-06 12-51-58" src="https://github.com/user-attachments/assets/d59d9b1c-b790-434c-b65d-c8df2ee1fc7d" />
 
 ### *Sensory Augmentation for the Visually Impaired*
 
@@ -6,21 +8,21 @@
 
 -----
 
-## 🌟 Key Features
+## Key Features
 
-  * **🔊 Hyper-Realistic Spatial Audio:** Uses a custom CUDA-accelerated physics engine to simulate Doppler shift, wall reflections, and room reverb in real-time.
-  * **👁️ Visual-to-Audio Mapping:**
+  * **Hyper-Realistic Spatial Audio:** Uses a custom CUDA-accelerated physics engine to simulate Doppler shift, wall reflections, and room reverb in real-time.
+  * **Visual-to-Audio Mapping:**
       * **Pitch:** Maps vertical elevation (High Pitch = Floor, Low Pitch = Ceiling/Obstacles).
       * **Volume:** Maps horizontal (XY) proximity. Objects at feet sound as loud as objects at head level.
-  * **🚀 Hybrid Compute Architecture:**
+  * **Hybrid Compute Architecture:**
       * **Vision (iGPU):** Runs Optical Flow (RAFT) and Depth Estimation on integrated graphics to prevent stalls.
       * **Audio (RTX GPU):** Dedicated high-priority CUDA streams for sub-15ms audio synthesis.
-  * **📍 Precision Tracking:** Fuses Visual Odometry (RAFT) with IMU data for drift-free 6DoF head tracking.
-  * **🛡️ Safety-First Design:** "Fail-Loud" architecture instantly cuts audio if tracking is lost, preventing false confidence.
+  * **Precision Tracking:** Fuses Visual Odometry (RAFT) with IMU data for drift-free 6DoF head tracking.
+  * **Safety-First Design:** "Fail-Loud" architecture instantly cuts audio if tracking is lost, preventing false confidence.
 
 -----
 
-## 🏗️ System Architecture
+## System Architecture
 
 The system follows a strict **Sense-Process-Sonify** pipeline, distributed across hardware to maximize throughput.
 
@@ -79,7 +81,7 @@ graph TD
 
 -----
 
-## 🚀 Usage
+## Usage
 
 ### 1\. Calibration (Critical Step)
 
@@ -115,7 +117,7 @@ python vsa_pipeline.py
 
 -----
 
-## 📂 File Structure Breakdown
+## File Structure Breakdown
 
   * **`vsa_pipeline.py`**
       * The **Brain**. Orchestrates the threads, manages GPU streams, and handles the main event loop.
@@ -130,28 +132,28 @@ python vsa_pipeline.py
 
 -----
 
-## 🔧 Troubleshooting & Known Issues
+## Troubleshooting & Known Issues
 
-### 📉 Low Framerate (FPS)
+### Low Framerate (FPS)
 
   * **Issue:** Visual system running at \~11 FPS.
   * **Reason:** This is intentional\! We cap the visual tracking to spare resources for the audio engine (which needs \<15ms latency).
   * **Fix:** Scan your head slowly to "paint" the room with sound.
 
-### 🔇 Audio Stuttering
+### Audio Stuttering
 
   * **Fix 1:** Ensure `sounddevice` block size is set to **512** or **1024** in `vsa_pipeline.py`.
   * **Fix 2:** Close other GPU-heavy apps (Chrome, Games).
   * **Fix 3:** Check that the dedicated NVIDIA GPU is not being used for the visual tracker (check Task Manager).
 
-### 🌡️ Thermal Throttling
+### Thermal Throttling
 
   * **Issue:** After \~45 mins, performance drops.
   * **Fix:** Restart the script to clear GPU memory cache and reset thermal limits.
 
 -----
 
-## 📜 License
+## License
 
 This project uses components from Open Source libraries (OpenCV, PyTorch).
 
