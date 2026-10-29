@@ -17,7 +17,7 @@
   * **Hybrid Compute Architecture:**
       * **Vision (iGPU):** Runs Optical Flow (RAFT) and Depth Estimation on integrated graphics to prevent stalls.
       * **Audio (RTX GPU):** Dedicated high-priority CUDA streams for sub-15ms audio synthesis.
-  * **Precision Tracking:** Fuses Visual Odometry (RAFT) with IMU data for drift-free 6DoF head tracking.
+  * **Precision Tracking:** Fuses Visual Odometry (RAFT) with IMU data for drift-limited 6DoF head tracking.
   * **Safety-First Design:** "Fail-Loud" architecture instantly cuts audio if tracking is lost, preventing false confidence.
 
 -----
